@@ -8,23 +8,23 @@
 //        TwentyFortyEight game = new TwentyFortyEight();
 //        game.print();
 //
-//        //Solver.playInteractive(game);
+//        Solver.playInteractive(game);
 //
-//        int counter = 0;
-//        while(!game.won()){
-//            Solver.aiNextMove(game);
-//
-//            if (game.won()){
-//                System.out.println("WINNER!!!!!!!");
-//                break;
-//            }
-//            if (game.gameOver() && game.gameOver2()){
-//                System.out.println("You lost");
-//                break;
-//            }
-//            counter ++;
-//            System.out.println("counter:" + counter);
-//        }
+////        int counter = 0;
+////        while(!game.won()){
+////            Solver.aiNextMove(game);
+////
+////            if (game.won()){
+////                System.out.println("WINNER!!!!!!!");
+////                break;
+////            }
+////            if (game.gameOver() && game.gameOver2()){
+////                System.out.println("You lost");
+////                break;
+////            }
+////            counter ++;
+////            System.out.println("counter:" + counter);
+////        }
 //
 //
 //
@@ -135,21 +135,21 @@
 //                    // Credit the amount of zeros on the board
 //                    workingScore += (5 * newBoard.emptySpaceCounter(newBoard));
 //
-//                    // Give credit for increasing order (left to right)
-//                    for (int x = 0; x < 3; x++){
-//                        workingScore += (newBoard.positions[0][x] * 2) == newBoard.positions[0][x+1] ? 5 : 0;
-//                        workingScore += (newBoard.positions[1][x] * 2) == newBoard.positions[1][x+1] ? 5 : 0;
-//                        workingScore += (newBoard.positions[2][x] * 2) == newBoard.positions[2][x+1] ? 5 : 0;
-//                        workingScore += (newBoard.positions[3][x] * 2) == newBoard.positions[3][x+1] ? 5 : 0;
-//                    }
-//                    // Give credit for decreasing order (up to down)
-//                    for (int y = 0; y < 3; y++){
-//                        workingScore += (newBoard.positions[y][0] * 2) == newBoard.positions[y+1][0] ? 5 : 0;
-//                        workingScore += (newBoard.positions[y][1] * 2) == newBoard.positions[y+1][1] ? 5 : 0;
-//                        workingScore += (newBoard.positions[y][2] * 2) == newBoard.positions[y+1][2] ? 5 : 0;
-//                        workingScore += (newBoard.positions[y][3] * 2) == newBoard.positions[y+1][3] ? 5 : 0;
-//
-//                    }
+////                    // Give credit for increasing order (left to right)
+////                    for (int x = 0; x < 3; x++){
+////                        workingScore += (newBoard.positions[0][x] * 2) == newBoard.positions[0][x+1] ? 5 : 0;
+////                        workingScore += (newBoard.positions[1][x] * 2) == newBoard.positions[1][x+1] ? 5 : 0;
+////                        workingScore += (newBoard.positions[2][x] * 2) == newBoard.positions[2][x+1] ? 5 : 0;
+////                        workingScore += (newBoard.positions[3][x] * 2) == newBoard.positions[3][x+1] ? 5 : 0;
+////                    }
+////                    // Give credit for decreasing order (up to down)
+////                    for (int y = 0; y < 3; y++){
+////                        workingScore += (newBoard.positions[y][0] * 2) == newBoard.positions[y+1][0] ? 5 : 0;
+////                        workingScore += (newBoard.positions[y][1] * 2) == newBoard.positions[y+1][1] ? 5 : 0;
+////                        workingScore += (newBoard.positions[y][2] * 2) == newBoard.positions[y+1][2] ? 5 : 0;
+////                        workingScore += (newBoard.positions[y][3] * 2) == newBoard.positions[y+1][3] ? 5 : 0;
+////
+////                    }
 //
 //
 //
@@ -174,6 +174,7 @@
 //                        isOver2 = true;
 //                    }
 //                } // END OF WHILE LOOP
+//                workingScore += newBoard.heuristic(newBoard);
 //
 //
 //
@@ -361,7 +362,28 @@
 //        return false;
 //    }
 //
+//    // This adds the heuristic value to each board we analyze
+//    public int heuristic(TwentyFortyEight board){
+//        int hSum = 0;
+//        hSum += board.positions[0][0] != 0 ? (int) Math.pow(2, 1) * board.positions[0][0] : 0;
+//        hSum += board.positions[0][1] != 0 ? (int) Math.pow(2, 2) * board.positions[0][1] : 0;
+//        hSum += board.positions[0][2] != 0 ? (int) Math.pow(2, 3) * board.positions[0][2] : 0;
+//        hSum += board.positions[0][3] != 0 ? (int) Math.pow(2, 4) * board.positions[0][3] : 0;
+//        hSum += board.positions[1][3] != 0 ? (int) Math.pow(2, 5) * board.positions[1][3] : 0;
+//        hSum += board.positions[1][2] != 0 ? (int) Math.pow(2, 6) * board.positions[1][2]: 0;
+//        hSum += board.positions[1][1] != 0 ? (int) Math.pow(2, 7) * board.positions[1][1] : 0;
+//        hSum += board.positions[1][0] != 0 ? (int) Math.pow(2, 8) * board.positions[1][0]: 0;
+//        hSum += board.positions[2][0] != 0 ? (int) Math.pow(2, 9) * board.positions[2][0]: 0;
+//        hSum += board.positions[2][1] != 0 ? (int) Math.pow(2, 10) * board.positions[2][1]: 0;
+//        hSum += board.positions[2][2] != 0 ? (int) Math.pow(2, 11) * board.positions[2][2]: 0;
+//        hSum += board.positions[2][3] != 0 ? (int) Math.pow(2, 12) * board.positions[2][3]: 0;
+//        hSum += board.positions[3][3] != 0 ? (int) Math.pow(2, 13) * board.positions[3][3] : 0;
+//        hSum += board.positions[3][2] != 0 ? (int) Math.pow(2, 14) * board.positions[3][2] : 0;
+//        hSum += board.positions[3][1] != 0 ? (int) Math.pow(2, 15) * board.positions[3][1] : 0;
+//        hSum += board.positions[3][0] != 0 ? (int) Math.pow(2, 16) * board.positions[3][0]: 0;
 //
+//        return hSum;
+//    }
 //    public int playRandom2(TwentyFortyEight board, int playNumber){
 //        int score = 0;
 //        if (playNumber == 1) {
