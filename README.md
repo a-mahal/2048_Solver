@@ -7,4 +7,8 @@ The goal is to achieve the tile 2048.
 ## Algorithm used to solve 2048
 To account for the randomness of the added value of 2 or 4 for each move of the board, Expectimax was the chose algorithm for this problem. Expectimax is a decision-making algorithm mostly used in scenarios where uncertainty or chance is involved. It constructs a game tree that represents all the possible moves and chance outcomes, then evaluates the tree nodes to determine the best possible move for a specific game state.
 
+![GitHub Logo]([https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png](https://github.com/a-mahal/2048_Solver/blob/main/Game_Tree_2048.png) "GitHub Logo")
+
+
 The image above shows a small example of the game tree, where chance nodes calculate the average of their children, the utility nodes, which the expected utility as the value upon them. The maximizer is at the root node, so it moves toward the maximum expected utility node and afterward toward the maximum available utility node.
+
